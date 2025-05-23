@@ -23,7 +23,7 @@ def sampler(
     df["profile1"]=df["pair"].str.split("|").str[0].apply(lambda x: locations.get(x,None))
     df["profile2"]=df["pair"].str.split("|").str[1].apply(lambda x: locations.get(x,None))
     df.dropna(inplace=True)
-    return df[["profile_1","profile_2","group"]].reset_index(drop=True)
+    return df[["profile1","profile2","group"]].reset_index(drop=True)
     
 
 @click.group()
