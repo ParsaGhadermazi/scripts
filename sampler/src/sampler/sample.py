@@ -49,3 +49,6 @@ def sample_command(profiles: list, pair_mapping: str, n_samples: int, output_fil
     )
     df.to_csv(output_file, index=False)
     click.echo(f"Sampled pairs saved to {output_file}")
+
+if __name__ == '__main__':
+    cli()
