@@ -17,11 +17,11 @@ def sampler(
     Returns:
         A pandas dataframe of the sampled pairs.
     """
-    locations={x.name:str(x) for x in profiles}
+    locations={x.name:str(x.absolute()) for x in profiles}
     df=pd.DataFrame({"pair":pair_mapping.keys(), "group":pair_mapping.values()})
     df=df.groupby("group").sample(n_samples,replace=False)
-    df["profile_1"]=df["pair"].str.split("|").str[0].apply(lambda x: locations.get(x,None))
-    df["profile_2"]=df["pair"].str.split("|").str[1].apply(lambda x: locations.get(x,None))
+    df["profile1"]=df["pair"].str.split("|").str[0].apply(lambda x: locations.get(x,None))
+    df["profile2"]=df["pair"].str.split("|").str[1].apply(lambda x: locations.get(x,None))
     df.dropna(inplace=True)
     return df[["profile_1","profile_2","group"]].reset_index(drop=True)
     
